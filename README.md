@@ -14,7 +14,8 @@
   after the `// Output:` line is compared to the output written stdout in that
   function. Non-matching is considered a failure. 
 
-* An "end-to-end" example is available in [`pkg/toyrobot/simulation_test.go`](pkg/toyrobot/simulation_test.go).
+* Provided example inputs + outputs and an "end-to-end" example is available 
+  in [`pkg/toyrobot/simulation_test.go`](pkg/toyrobot/simulation_test.go).
 
 * Continuous integration has been set up at [Travis CI][travis].
 

@@ -1,8 +1,10 @@
 package toyrobot
 
 import (
+	"bytes"
 	"os"
 	"strings"
+	"testing"
 )
 
 func Example() {
@@ -43,4 +45,49 @@ REPORT
 	// REPORT 3, 3, NORTH
 	// REPORT 3, 4, NORTH
 	// REPORT 3, 4, NORTH
+}
+
+func TestProvidedExampleA(t *testing.T) {
+	input := strings.NewReader(`
+PLACE 0, 0, NORTH
+MOVE
+REPORT
+`)
+	buf := &bytes.Buffer{}
+	RunStandardSimulation(input, buf)
+
+	if buf.String() != ("REPORT 0, 1, NORTH\n") {
+		t.Fail()
+	}
+}
+
+func TestProvidedExampleB(t *testing.T) {
+	input := strings.NewReader(`
+PLACE 0, 0, NORTH
+LEFT
+REPORT
+`)
+	buf := &bytes.Buffer{}
+	RunStandardSimulation(input, buf)
+
+	if buf.String() != ("REPORT 0, 0, WEST\n") {
+		t.Fail()
+	}
+}
+
+func TestProvidedExampleC(t *testing.T) {
+	input := strings.NewReader(`
+PLACE 1,2,EAST
+MOVE
+MOVE
+LEFT
+MOVE
+REPORT
+`)
+	buf := &bytes.Buffer{}
+	RunStandardSimulation(input, buf)
+
+	if buf.String() != ("REPORT 3, 3, NORTH\n") {
+		t.Fail()
+	}
 }
